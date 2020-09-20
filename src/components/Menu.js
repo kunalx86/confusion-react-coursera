@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card, CardBody, CardImg, CardImgOverlay, CardText, CardTitle } from 'reactstrap';
+import { Card, CardImg, CardImgOverlay, CardTitle } from 'reactstrap';
 import DishDetail from './DishDetail';
 
 class Menu extends Component {
