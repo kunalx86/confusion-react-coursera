@@ -8,10 +8,10 @@ const Footer = props => {
           <div className="col-4 offset-1 col-sm-2">
             <h5>Links</h5>
             <ul className="list-unstyled">
-              <li><a href="#">Home</a></li>
-              <li><a href="#">About</a></li>
-              <li><a href="#">Menu</a></li>
-              <li><a href="contactus.html">Contact</a></li>
+              <li><a href="/home">Home</a></li>
+              <li><a href="/about">About</a></li>
+              <li><a href="/menu">Menu</a></li>
+              <li><a href="/contact">Contact</a></li>
             </ul>
           </div>
           <div className="col-7 col-sm-5">
