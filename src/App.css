@@ -30,6 +30,10 @@ address {
   color: #ffffff;
 }
 
+.address-contact {
+  color: #000000;
+}
+
 .navbar-dark {
   background-color: #2e2e2e;
 }
