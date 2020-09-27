@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Contact = props => {
   return (
@@ -23,9 +24,9 @@ const Contact = props => {
         </div>
         <div className="col-12 col-sm-11 offset-sm-1">
           <div className="btn-group" role="group">
-            <a role="button" className="btn btn-primary" href="tel:+85212345678"><i className="fa fa-phone"></i> Call</a>
-            <a role="button" className="btn btn-info"><i className="fa fa-skype"></i> Skype</a>
-            <a role="button" className="btn btn-success" href="mailto:confusion@food.net"><i className="fa fa-envelope-o"></i> Email</a>
+            <Link role="button" className="btn btn-primary" to="tel:+85212345678"><i className="fa fa-phone"></i> Call</Link>
+            <Link role="button" className="btn btn-info" to="#"><i className="fa fa-skype"></i> Skype</Link>
+            <Link role="button" className="btn btn-success" to="mailto:confusion@food.net"><i className="fa fa-envelope-o"></i> Email</Link>
           </div>
         </div>
       </div>
