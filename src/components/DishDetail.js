@@ -50,11 +50,12 @@ const Comments = ({ comments }) => {
 }
 
 const DishDetail = props => {
+  console.log(props);
   return (
     <div className="row">
       <Dish dish={props.dish} />
       <div className="col-12 col-md-5 m-1 list-unstyled">
-        {props.dish ? <Comments comments={props.dish.comments} /> : ''}
+        {props.dish ? <Comments comments={props.comments} /> : ''}
      </div>
     </div>
   );
