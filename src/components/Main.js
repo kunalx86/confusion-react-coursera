@@ -18,7 +18,6 @@ class Main extends Component {
     this.state = {
       dishes: dishes,
       selectedDish: null,
-      dishes: dishes,
       leaders: leaders,
       promotions: promotions,
       comments: comments,
