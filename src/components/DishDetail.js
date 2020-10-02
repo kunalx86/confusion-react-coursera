@@ -23,14 +23,14 @@ const Dish = ({ dish }) => {
 
 const Comment = ({ comment }) => {
   return (
-    <div key={comment.id}>
+    <>
       <div className="m-3">
         {comment.comment}
       </div>
       <div className="m-3">
         -- {comment.author}, {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit' }).format(new Date(Date.parse(comment.date))) }
       </div>
-    </div>
+    </>
   );
 }
 
@@ -41,7 +41,7 @@ const Comments = ({ comments }) => {
         comments ? 
         <>
           <h4> Comments </h4>
-          {comments.map(comment => <Comment comment={comment}/>)}
+          {comments.map(comment => <div key={comment.id}><Comment comment={comment}/></div>)}
         </> :
         <div></div>
       }

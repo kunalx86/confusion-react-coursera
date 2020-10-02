@@ -4,16 +4,14 @@ import { Breadcrumb, BreadcrumbItem, Card, CardImg, CardImgOverlay, CardTitle } 
 
 const MenuItem = ({ dish }) => {
   return (
-    <div key={dish.id} className="col-12 col-md-5 m-1">
-      <Card>
-        <Link to={`/menu/${dish.id}`}>
-          <CardImg width="100%" src={dish.image} alt={dish.name} />
-          <CardImgOverlay>
-            <CardTitle>{dish.name}</CardTitle>
-          </CardImgOverlay>
-        </Link>
-      </Card>
-    </div>
+    <Card>
+      <Link to={`/menu/${dish.id}`}>
+        <CardImg width="100%" src={dish.image} alt={dish.name} />
+        <CardImgOverlay>
+          <CardTitle>{dish.name}</CardTitle>
+        </CardImgOverlay>
+      </Link>
+    </Card>
   );
 }
 
@@ -34,7 +32,7 @@ const Menu = props => {
         </div>
       </div>
       <div className="row">
-        {props.dishes.map(dish => <MenuItem dish={dish} />)} 
+        {props.dishes.map(dish => <div key={dish.id} className="col-12 col-md-5 m-1"><MenuItem dish={dish} /></div>)}
       </div>
     </div>
   );

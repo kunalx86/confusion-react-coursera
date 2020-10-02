@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const RenderLeader = ({ leader }) => {
   return (
-    <div key={leader.id} className="mt-3 mb-3">
+    <div className="mt-3 mb-3">
       <Media>
         <Media left middle>
           <Media object src={leader.image} alt={leader.name}/>
@@ -25,7 +25,7 @@ const RenderLeader = ({ leader }) => {
 
 const About = props => {
 
-  const leaders = props.leaders.map(leader => <RenderLeader leader={leader} />);
+  const leaders = props.leaders.map(leader => <div key={leader.id}><RenderLeader leader={leader} /></div>);
 
   return (
     <div className="container">
