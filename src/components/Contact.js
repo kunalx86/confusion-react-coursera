@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
 import { Breadcrumb, BreadcrumbItem, Button, Col, Label, Row } from 'reactstrap';
 import { Link } from 'react-router-dom';
-import { Control, LocalForm } from 'react-redux-form';
+import { Control, Errors, LocalForm } from 'react-redux-form';
+
+const required = val => val && val.length;
+const maxLength = len => val => !(val) || (val.length <= len);
+const minLength = len => val => (val) && (val.length >= len);
+const isNumber = val => !isNaN(Number(val));
+const validEmail = val => /\S+@\S+\.\S+/.test(val);
 
 class Contact extends Component {
   constructor(props) {
@@ -68,6 +74,21 @@ class Contact extends Component {
                       id="firstName" 
                       name="firstName"
                       placeholder="First Name"
+                      validators={{
+                        required,
+                        minLength: minLength(2),
+                        maxLength: maxLength(20),
+                      }}
+                    />
+                    <Errors
+                      className="text-danger"
+                      model=".firstName"
+                      show="touched"
+                      messages={{
+                        required: "This field cannot be blank\n",
+                        minLength: "Firstname should atleast be 2 characters\n",
+                        maxLength: "Firstname shouldn't exceed 20 characters\n",
+                      }}
                     />
                   </Col>
                 </Row>
@@ -82,6 +103,21 @@ class Contact extends Component {
                       id="lastName" 
                       name="lastName"
                       placeholder="Last Name"
+                      validators={{
+                        required,
+                        minLength: minLength(2),
+                        maxLength: maxLength(20),
+                      }}
+                    />
+                    <Errors
+                      className="text-danger"
+                      model=".lastName"
+                      show="touched"
+                      messages={{
+                        required: "This field cannot be blank\n",
+                        minLength: "Lastname should atleast be 2 characters\n",
+                        maxLength: "Lastname shouldn't exceed 20 characters\n",
+                      }}
                     />
                   </Col>
                 </Row>
@@ -96,6 +132,23 @@ class Contact extends Component {
                       id="telNum" 
                       name="telNum"
                       placeholder="Telephone No."
+                      validators={{
+                        required,
+                        minLength: minLength(8),
+                        maxLength: maxLength(12),
+                        isNumber,
+                      }}
+                    />
+                    <Errors
+                      className="text-danger"
+                      model=".telNum"
+                      show="touched"
+                      messages={{
+                        required: "This field cannot be blank\n",
+                        minLength: "Telephone number should atleast be 8 digits\n",
+                        maxLength: "Telephone number shouldn't exceed 12 digits\n",
+                        isNumber: "This field can only be a number\n"
+                      }}
                     />
                   </Col>
                 </Row>
@@ -110,6 +163,19 @@ class Contact extends Component {
                       id="email" 
                       name="email"
                       placeholder="Email"
+                      validators={{
+                        required,
+                        validEmail,
+                      }}
+                    />
+                    <Errors
+                      className="text-danger"
+                      model=".email"
+                      show="touched"
+                      messages={{
+                        required: "This field cannot be blank\n",
+                        validEmail: "Email not valid\n"
+                      }}
                     />
                   </Col>
                 </Row>
