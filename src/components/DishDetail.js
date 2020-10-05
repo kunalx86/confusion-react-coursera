@@ -17,7 +17,7 @@ class CommentForm extends Component {
 
   handleSubmit(values) {
     this.toggleModal();
-    alert(`State is ${JSON.stringify(values)}`);
+    this.props.addComment(this.props.dishId, values.rating, values.author, values.comment);
   }
 
   toggleModal() {
@@ -143,7 +143,7 @@ const Comment = ({ comment }) => {
   );
 }
 
-const Comments = ({ comments }) => {
+const Comments = ({ dishId, addComment, comments }) => {
   return (
     <>
       {
@@ -154,7 +154,7 @@ const Comments = ({ comments }) => {
         </> :
         <div></div>
       }
-      <CommentForm />
+      <CommentForm dishId={dishId} addComment={addComment}/>
     </>
   );
 }
@@ -164,7 +164,7 @@ const DishDetail = props => {
     <div className="row">
       <Dish dish={props.dish} />
       <div className="col-12 col-md-5 m-1 list-unstyled">
-        {props.dish ? <Comments comments={props.comments} /> : ''}
+        {props.dish ? <Comments dishId={props.dish.id} addComment={props.addComment} comments={props.comments} /> : ''}
      </div>
     </div>
   );
