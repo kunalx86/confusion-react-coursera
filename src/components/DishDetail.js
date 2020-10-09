@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Control, Errors, LocalForm } from 'react-redux-form';
 import { Button, Card, CardBody, CardImg, CardText, CardTitle, Col, Label, Modal, ModalBody, ModalHeader, Row } from 'reactstrap';
+import { Loading } from './Loading';
 
 const maxLength = len => val => !(val) || (val.length <= len);
 const minLength = len => val => (val) && (val.length >= len);
@@ -160,14 +161,36 @@ const Comments = ({ dishId, addComment, comments }) => {
 }
 
 const DishDetail = props => {
-  return (
-    <div className="row">
-      <Dish dish={props.dish} />
-      <div className="col-12 col-md-5 m-1 list-unstyled">
-        {props.dish ? <Comments dishId={props.dish.id} addComment={props.addComment} comments={props.comments} /> : ''}
-     </div>
-    </div>
-  );
+  if (props.isLoading) {
+    return (
+      <div className="container">
+        <div className="row">
+          <Loading />
+        </div>
+      </div>
+    )
+  }
+
+  else if (props.errMsg) {
+    return (
+      <div className="container">
+        <div className="row">
+          {props.errMsg}
+        </div>
+      </div>
+    );
+  }
+  
+  else {
+    return (
+      <div className="row">
+        <Dish dish={props.dish} />
+        <div className="col-12 col-md-5 m-1 list-unstyled">
+          <Comments dishId={props.dish.id} addComment={props.addComment} comments={props.comments} />
+       </div>
+      </div>
+    );
+  }
 }
 
 export default DishDetail;
