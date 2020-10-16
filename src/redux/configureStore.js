@@ -7,7 +7,7 @@ import thunk from 'redux-thunk';
 import logger from 'redux-logger';
 
 export const ConfigureStore = () => {
-  const middlewares = [logger, thunk];
+  const middlewares = [thunk, logger];
   const store = createStore(
     combineReducers({
       dishes: Dishes,
