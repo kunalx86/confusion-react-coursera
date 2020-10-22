@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Control, Errors, LocalForm } from 'react-redux-form';
 import { Button, Card, CardBody, CardImg, CardText, CardTitle, Col, Label, Modal, ModalBody, ModalHeader, Row } from 'reactstrap';
+import { baseUrl } from '../shared/baseUrl';
 import { Loading } from './Loading';
 
 const maxLength = len => val => !(val) || (val.length <= len);
@@ -118,7 +119,7 @@ const Dish = ({ dish }) => {
         dish ?
         <div className="col-12 col-md-5 m-1">
           <Card> 
-            <CardImg width="100%" src={dish.image} alt={dish.name} />
+            <CardImg width="100%" src={baseUrl + dish.image} alt={dish.name} />
             <CardBody>
               <CardTitle> <h4> {dish.name} </h4> </CardTitle>
               <CardText> {dish.description} </CardText>
