@@ -13,7 +13,8 @@ export const addComment = (dishId, rating, author, comment) => ({
 
 export const fetchDishes = () => async dispatch => {
   dispatch(dishesLoading());
-  const dishes =  await (await fetch(baseUrl + 'dishes')).json();
+  const response = await fetch(baseUrl + 'dishes');
+  const dishes = await response.json();
   dispatch(addDishes(dishes));
 }
 
@@ -32,7 +33,8 @@ export const addDishes = dishes => ({
 })
 
 export const fetchComments = () => async dispatch => {
-  const comments = await(await fetch(baseUrl + 'comments')).json();
+  const response = await fetch(baseUrl + 'comments');
+  const comments = await response.json();
   dispatch(addComments(comments));
 }
 
@@ -48,7 +50,8 @@ export const addComments = comments => ({
 
 export const fetchPromos = () => async dispatch => {
   dispatch(promosLoading(true));
-  const promos = await(await fetch(baseUrl + 'promotions')).json();
+  const response = await fetch(baseUrl + 'promotions');
+  const promos = await response.json();
   dispatch(addPromos(promos));
 }
 
