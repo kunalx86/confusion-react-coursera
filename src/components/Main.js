@@ -8,7 +8,7 @@ import { Redirect, Route, Switch, withRouter } from 'react-router-dom';
 import Contact from './Contact';
 import About from './About';
 import { connect } from 'react-redux';
-import { addComment, fetchComments, fetchDishes, fetchPromos } from '../redux/ActionCreators';
+import { postComment, fetchComments, fetchDishes, fetchPromos } from '../redux/ActionCreators';
 import { actions } from 'react-redux-form';
 
 const mapStateToProps = state => {
@@ -21,7 +21,7 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchtoProps = dispatch => ({
-  addComment: (dishId, rating, author, comment) => dispatch(addComment(dishId, rating, author, comment)),
+  addComment: (dishId, rating, author, comment) => dispatch(postComment(dishId, rating, author, comment)),
   fetchDishes: () => {dispatch(fetchDishes())},
   fetchPromos: () => {dispatch(fetchPromos())},
   fetchComments: () => {dispatch(fetchComments())},
