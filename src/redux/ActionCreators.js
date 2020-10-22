@@ -14,7 +14,6 @@ export const addComment = (dishId, rating, author, comment) => ({
 export const fetchDishes = () => async dispatch => {
   dispatch(dishesLoading());
   const dishes =  await (await fetch(baseUrl + 'dishes')).json();
-  console.log(dishes);
   dispatch(addDishes(dishes));
 }
 
