@@ -4,11 +4,11 @@ You may run the project either using docker or by having node installed on your 
 
 ## Docker way
 
-### `confusion$:docker-compose up build`
+### `confusion-react-coursera$:docker-compose up build`
 
 ## Node way for json-server
 
-### `confusion$:npm i -g json-server` You may need sudo
+### `confusion-react-coursera$:npm i -g json-server` You may need sudo
 
 ### `json-server$:json-server --watch ./data/db.json -d 2000 -p 3001`
 
