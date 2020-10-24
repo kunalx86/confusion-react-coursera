@@ -25,7 +25,7 @@ export const postComment = (dishId, rating, author, comment) => async dispatch =
     });
     if (response.ok) {
       const comment = await response.json();
-      dispatch(addComment(comment));
+      return dispatch(addComment(comment));
     } else {
       let error = new Error(`Error ${response.status}: ${response.statusText}`);
       error.response = response;
@@ -37,20 +37,44 @@ export const postComment = (dishId, rating, author, comment) => async dispatch =
   }
 } 
 
-export const fetchDishes = () => async dispatch => {
-  dispatch(dishesLoading());
+export const postFeedback = async feedback => {
   try {
-    const response = await fetch(baseUrl + 'dishes');
+    const response = await fetch(baseUrl + 'feedback', {
+      method: 'POST',
+      body: JSON.stringify(feedback),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      credentials: 'same-origin',
+    });
     if (response.ok) {
-      const dishes = await response.json();
-      dispatch(addDishes(dishes));
+      const resultFeedback = await response.json();
+      alert(`Thank you for your feedback!\n${JSON.stringify(resultFeedback)}`);
     } else {
       let error = new Error(`Error ${response.status}: ${response.statusText}`);
       error.response = response;
       throw error;
     }
   } catch(err) {
-    dispatch(dishesFailed(err.message));
+    console.error(err);
+    alert('Feedback couldn\'t be posted');
+  }
+}
+
+export const fetchDishes = () => async dispatch => {
+  dispatch(dishesLoading());
+  try {
+    const response = await fetch(baseUrl + 'dishes');
+    if (response.ok) {
+      const dishes = await response.json();
+      return dispatch(addDishes(dishes));
+    } else {
+      let error = new Error(`Error ${response.status}: ${response.statusText}`);
+      error.response = response;
+      throw error;
+    }
+  } catch(err) {
+    return dispatch(dishesFailed(err.message));
   }
 }
 
@@ -73,14 +97,14 @@ export const fetchComments = () => async dispatch => {
     const response = await fetch(baseUrl + 'comments');
     if (response.ok) {
       const comments = await response.json();
-      dispatch(addComments(comments));
+      return dispatch(addComments(comments));
     } else {
       let error = new Error(`Error ${response.status}: ${response.statusText}`);
       error.response = response;
       throw error;
     }
   } catch(err) {
-    dispatch(commentsFailed(err.message));
+    return dispatch(commentsFailed(err.message));
   }
 }
 
@@ -100,14 +124,14 @@ export const fetchPromos = () => async dispatch => {
     const response = await fetch(baseUrl + 'promotions');
     if (response.ok) {
       const promos = await response.json();
-      dispatch(addPromos(promos));
+      return dispatch(addPromos(promos));
     } else {
       let error = new Error(`Error ${response.status}: ${response.statusText}`);
       error.response = response;
       throw error;
     }
   } catch(err) {
-    dispatch(promosFailed(err.message));
+    return dispatch(promosFailed(err.message));
   }
 }
 
@@ -122,5 +146,36 @@ export const addPromos = promos => ({
 
 export const promosFailed = errMsg => ({
   type: ActionTypes.PROMOS_FAILED,
+  payload: errMsg,
+});
+
+export const fetchLeaders = () => async dispatch => {
+  dispatch(leadersLoading());
+  try {
+    const response = await fetch(baseUrl + 'leaders');
+    if (response.ok) {
+      const leaders = await response.json();
+      return dispatch(addLeaders(leaders));
+    } else {
+      let error = new Error(`Error ${response.status}: ${response.statusText}`);
+      error.response = response;
+      throw error;
+    }
+  } catch(err) {
+    return dispatch(leadersFailed(err.message));
+  }
+}
+
+export const leadersLoading = () => ({
+  type: ActionTypes.LEADERS_LOADING,
+});
+
+export const addLeaders = leaders => ({
+  type: ActionTypes.ADD_LEADERS,
+  payload: leaders,
+});
+
+export const leadersFailed = errMsg => ({
+  type: ActionTypes.LEADERS_FAILED,
   payload: errMsg,
 });
