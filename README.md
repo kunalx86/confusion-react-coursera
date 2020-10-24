@@ -4,7 +4,7 @@ You may run the project either using docker or by having node installed on your 
 
 ## Docker way
 
-### `confusion-react-coursera$:docker-compose up build`
+### `confusion-react-coursera$:docker-compose up --build`
 
 ## Node way for json-server
 
