@@ -1,8 +1,24 @@
+# This is a React Web App made during the React Coursera Course
+
+You may run the project either using docker or by having node installed on your system
+
+## Docker way
+
+### `confusion$:docker-compose up build`
+
+## Node way for json-server
+
+### `confusion$:npm i -g json-server` You may need sudo
+
+### `json-server$:json-server --watch ./data/db.json -d 2000 -p 3001`
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
 In the project directory, you can run:
+
+## Node way for react-app
 
 ### `yarn start`
 
