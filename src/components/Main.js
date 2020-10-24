@@ -32,12 +32,6 @@ const mapDispatchtoProps = dispatch => ({
 });
 
 class Main extends Component {
-  onDishSelect(dishId) {
-    this.setState({
-      selectedDish: dishId,
-    });
-  }
-
   componentDidMount() {
     this.props.fetchDishes();
     this.props.fetchComments();
